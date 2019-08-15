@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (_) {
           return WebviewScaffold(
-            url: 'https://www.baidu.com/',
+            url: 'https://saas.aqara.cn',
           );
         },
       },
