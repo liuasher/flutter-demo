@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
@@ -10,12 +11,35 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
+    final flutterWebviewPlugin = new FlutterWebviewPlugin();
+
+//    flutterWebviewPlugin.onUrlChanged.listen((String url) {
+//      print('----------');
+//      print(url);
+//    });
+
+    flutterWebviewPlugin.getCookies().then((m) {
+
+//      Map<String, dynamic> info = m;//json.decode(m);
+      print('-------------------↓');
+      print(m);
+      print(m['userId']);
+
+
+      flutterWebviewPlugin.evalJavascript('alert(1111111111)');
+
+    });
+
     return MaterialApp(
       title: 'aqara',
       routes: {
         '/': (_) {
           return WebviewScaffold(
-            url: 'https://saas.aqara.cn',
+            url: 'http://saas.aqara.cn',
+            hidden: true,
+              withLocalStorage: true,
+            userAgent: kAndroidUserAgent
           );
         },
       },
